@@ -1,9 +1,12 @@
+
 import "./Expenseitems.css";
+import "./ExpanseDate";
+import ExpanseDate from "./ExpanseDate";
 
 function Expanseitem(props) {
   return (
     <div className="expense-item">
-      <div>{props.date}</div>
+      <ExpanseDate date={props.date} />
       <div className="expense-item__description">
         <h2>{props.title}</h2>
         <h3>{props.location}</h3>
