@@ -1,19 +1,15 @@
 import "./Expenseitems.css";
 
-function Expanseitem() {
-  const expanseDate = new Date().toLocaleTimeString();
-  const expanseTitle = "Car insuranse";
-  const expansePrice = 2492;
+function Expanseitem(props) {
   return (
-    <>
-      <div className="expense-item ">
-        <div>{expanseDate}</div>
-        <div className="expense-item__description">
-          <h2>{expanseTitle} </h2>
-          <div className="expense-item__price">{expansePrice}</div>
-        </div>
+    <div className="expense-item">
+      <div>{props.date}</div>
+      <div className="expense-item__description">
+        <h2>{props.title}</h2>
+        <h3>{props.location}</h3>
+        <div className="expense-item__price">{props.amount}</div>
       </div>
-    </>
+    </div>
   );
 }
 export default Expanseitem;
