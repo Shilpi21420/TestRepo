@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import './ExpanseForm.css';
 
 const ExpanseForm = () =>{
+    const [enttitle , enteredtitle] = useState(''); 
+    const [entamount, enteredAmount] = useState('');
+    const [entdate, enteredDate] = useState('');
 
     const titlechange = (event) =>{
-        console.log(event.target.value);
+        enteredtitle(event.target.value);
+        
     }
 
      const amountChange = (event) =>{
-        console.log(event.target.value);
+       enteredAmount(event.target.value);
+      
 
      }
+     const dateChange = (event) =>{
+      enteredDate(event.target.value);
+     
+
+    }
 
 
 return (
@@ -29,7 +39,7 @@ return (
 
           <div className="new-expense__control">
             <label>Date</label>
-            <input type='date' min="2019-01-01" max="2025-12-31"  />
+            <input type='date' min="2019-01-01" max="2025-12-31" onChange={dateChange} />
           </div>
         </div>
 
