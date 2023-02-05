@@ -20,12 +20,23 @@ const ExpanseForm = () =>{
       enteredDate(event.target.value);
      
 
-    }
+     }
+     const submitbutton = (event) =>{
+      event.preventDefault();
+      const expenseDate = {
+        title : enttitle,
+        amount : entamount,
+        date : new Date(entdate)
+      };
+
+      console.log(expenseDate);
+
+     }
 
 
 return (
     <>
-      <form>
+      <form onSubmit={submitbutton}> 
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label>Title</label>
