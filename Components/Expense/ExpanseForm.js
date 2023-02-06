@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import './ExpanseForm.css';
 
-const ExpanseForm = () =>{
+const ExpanseForm = (props) =>{
     const [enttitle , enteredtitle] = useState(''); 
     const [entamount, enteredAmount] = useState('');
     const [entdate, enteredDate] = useState('');
 
     const titlechange = (event) =>{
-        enteredtitle(event.target.value);
-        
+      enteredtitle(event.target.value);
+    }
+    const amountChange = (event) =>{
+      enteredAmount(event.target.value);
+   }
+   const dateChange = (event) =>{
+    enteredDate(event.target.value);
     }
 
-     const amountChange = (event) =>{
-       enteredAmount(event.target.value);
-      
-
-     }
-     const dateChange = (event) =>{
-      enteredDate(event.target.value);
-     
-
-     }
      const submitbutton = (event) =>{
       event.preventDefault();
       const expenseDate = {
@@ -29,7 +24,10 @@ const ExpanseForm = () =>{
         date : new Date(entdate)
       };
 
-      console.log(expenseDate);
+      props.onSaveExpenseData(expenseDate);
+      enteredtitle('');
+      enteredAmount('');
+      enteredDate('');
 
      }
 
@@ -40,17 +38,17 @@ return (
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label>Title</label>
-            <input type='text' onChange={titlechange} />
+            <input type='text' value = {enttitle} onChange={titlechange} />
           </div>
 
           <div className="new-expense__control">
             <label>Amount</label>
-            <input type='number' min='0.01' step='0.01' onChange={amountChange} />
+            <input type='number' min='0.01' step='0.01' value={entamount} onChange={amountChange} />
           </div>
 
           <div className="new-expense__control">
             <label>Date</label>
-            <input type='date' min="2019-01-01" max="2025-12-31" onChange={dateChange} />
+            <input type='date' min="2019-01-01" max="2025-12-31" value={entdate} onChange={dateChange} />
           </div>
         </div>
 
