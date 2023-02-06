@@ -1,43 +1,31 @@
+import React,{ useState } from "react";
 import Expanseitem from "./Expanseitem";
-function Expenses() {
-  const expenses = [
-    {
-      title: "Food",
-      amount: 200,
-      date: new Date(2022, 7, 14).toString().slice(0, 15),
-      location: "Bihar"
-    },
-    {
-      title: "Bill",
-      amount: 500,
-      date: new Date(2022, 7, 15).toString().slice(0, 15),
-      location: "Jharkhand"
-    },
-    {
-      title: "Roaming",
-      amount: 250,
-      date: new Date(2022, 8, 14).toString().slice(0, 15),
-      location: "Delhi"
-    },
-    {
-      title: "College",
-      amount: 75000,
-      date: new Date(2022, 8, 14).toString().slice(0, 15),
-      location: "Banglore"
-    }
-  ];
+import Card from "../UI/Card";
+import ExpensesFilter from './ExpansesFilter';
+import './Expenses.css';
+
+
+function Expenses(props) {
+
+  const [filteredYear, setFilteredYear] = useState('2023');
+
+  const filterChangeHandler = selectedYear => {
+    setFilteredYear(selectedYear);
+  };
+  
   return (
     <div>
-      {expenses.map((item) => {
-        return (
+      <Card className='expenses'>
+        <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
+      {props.items.map((expanse) => (
           <Expanseitem
-            title={item.title}
-            amount={item.amount}
-            date={item.date}
-            location={item.location}
+            title={expanse.title}
+            amount={expanse.amount}
+            date={expanse.date}
           />
-        );
-      })}
+        
+      ))}
+      </Card>
     </div>
   );
 }
